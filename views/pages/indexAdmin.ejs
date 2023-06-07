@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- <link rel="stylesheet" type="text/css" href="index.css"> -->
+        <%- include('../partials/head'); %>
+    </head>
+<body>
+    <!-- <header><%- include('../partials/header'); %></header> -->
+    <div class="main">
+        <div class="sidebase close">
+            <header>
+                <div class="image-text">
+                    <span class="image">
+                        <img src="/main/image/banner3.jpeg" alt="logo"
+                    </span>
+                    <div class="text header-text">
+                        <span class="name">CodingLab</span>
+                        <span class="profestion">Web Developer</span>
+                    </div>
+                </div>
+                <i class="icons ti-angle-right toggle"></i>
+            </header>
+            <div class="col">
+                    <div class="col-icon">
+                        <li class="search-box">
+                            <i class="icons bx bx-search icon"></i>
+                            <input type="search" placeholder="Search...">
+                        </li>
+                        <ul class="menu-links">
+                            <li class="nav-link">
+                                <a href="#">
+                                    <i class="icons bx bx-home icon"></i>
+                                    <span class="text nav-text">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="nav-link">
+                                <a href="#">
+                                    <i class="icons ti-id-badge icon"></i>
+                                    <span class="text nav-text">Product List</span>
+                                </a>
+                            </li>
+                            <li class="nav-link">
+                                <a href="#">
+                                    <i class="icons ti-plus icon"></i>
+                                    <span class="text nav-text">Add Data</span>
+                                </a>
+                            </li>
+                            <li class="nav-link">
+                                <a href="#">
+                                    <i class="icons ti-pencil-alt icon"></i>
+                                    <span class="text nav-text">Edit Data</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bottom-contents">
+                        <li class="nav-link">
+                            <a href="#">
+                                <i class="icons bx-share-alt icon"></i>
+                                <span class="text nav-text">Log Out</span>
+                            </a>
+                        </li>
+                        <li class="mode">
+                            <div class="moon-sun">
+                                <i class="bx bx-moon icon moon"></i>
+                                <i class="bx bx-sun icon sun"></i>
+                            </div>
+                            <span class="mode-text text">Dark Mode</span>
+                            <div class="toggle-switch">
+                                <span class="switch"></span>
+                            </div>
+                        </li>
+                    </div>
+                </div>
+        </div>
+        <section class="home">
+            <div class="text">
+                Dashboard
+            </div>
+            <div class="jumbotron">
+                <h3>Danh mục sản phẩm</h3>
+              <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col">Tên sản phẩm</th>
+                      <th scope="col">Mã sản phẩm</th>
+                      <th scope="col">Giá sản phẩm</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% products.forEach(function(product, index) { %>
+                    <tr>
+                      <th scope="row"><%= index+1 %></th>
+                      <td><%= product.tensp %></td>
+                      <td><%= product.giasp %></td>
+                      <td><%= product.masp %></td>
+                      <td>
+                        <svg
+                          style="cursor: pointer"
+                          onclick='editItem("<%= product._id %>")'
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="currentColor"
+                          class="bi bi-pencil-square"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
+                          />
+                          <path
+                            fill-rule="evenodd"
+                            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+                          />
+                        </svg>
+                        <svg
+                          style="cursor: pointer"
+                          onclick='deleteItem("<%= product._id %>")'
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="currentColor"
+                          class="bi bi-trash"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"
+                          />
+                          <path
+                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"
+                          />
+                        </svg>
+                      </td>
+                    </tr>
+                    <% }); %>
+                </table>
+            </div>
+            
+            <form id="uploadFile" enctype="multipart/form-data" action="/upload-image" method="post">
+                <input type="file" name="file" />
+                    <input type="submit" value="Upload File" name="submit">
+              </form>
+            <form class="row g-3" action="/product/add" method="post">
+                <div class="col-md-6">
+                  <img src="<%= urlUploaded %>" height="100px" width="100px" />
+                  <input
+                    type="hidden"
+                    class="form-control"
+                    name="avatar"
+                    id="avatar"
+                    value="<%= urlUploaded %>"
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label for="tensp" class="form-label">Tên sản phẩm</label>
+                  <input type="text" class="form-control" id="tensp" name="tensp" placeholder="Nhập tên sản phẩm" />
+                </div>
+                <div class="col-md-6">
+                  <label for="giasp" class="form-label">Giá sản phẩm</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="giasp"
+                    name="giasp"
+                    placeholder="Nhập giá sản phẩm"
+                  />
+                </div>
+                <div class="col-6">
+                  <label for="masp" class="form-label">Mã sản phẩm</label>
+                  <input type="text" class="form-control" id="masp" name="masp" placeholder="Mã sản phẩm" />
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary">Thêm mới</button>
+                </div>
+              </form>
+              <div id="formEdit"></div>
+
+        </section>
+        <script>
+            function deleteItem(productId) {
+              $.ajax({
+                type: "DELETE",
+                url: `/product/delete/${productId}`,
+                success: function (rs) {
+                  console.log(rs);
+                  if (rs.s === 200) {
+                  } else {
+                    alert(rs.msg);
+                  }
+                },
+              });
+            }
+      
+            function editItem(productId) {
+              $.ajax({
+                type: "GET",
+                url: `/product/detail/${productId}`,
+                success: function (rs) {
+                  if (rs.s === 200) {
+                    let productInfo = rs.data;
+                    var formEdit = `
+                            <h3>Cập nhật thông tin nhân viên</h3>
+                            <form class="row g-3" action="/product/edit" method="post">
+                                  <div>
+                                      <input type="text" class="form-control" id="_id" name="_id" value="${productInfo._id}" style="display:none">
+                                  </div>
+                                <div class="col-md-6">
+                                <label for="tensp" class="form-label">Tên Sản Phẩm</label>
+                                <input type="text" class="form-control" id="tensp" name="tensp" placeholder="Nhập tên" value="${productInfo.name}">
+                                </div>
+                                <div class="col-md-6">
+                                <label for="masp" class="form-label">Mã sản phẩm</label>
+                                <input type="text" class="form-control" id="masp" name="masp" placeholder="Nhập Mã sản phẩm" value="${productInfo.email}">
+                                </div>
+                                <div class="col-6">
+                                <label for="age" class="form-label">Age</label>
+                                <input type="text" class="form-control" id="age" name="age" placeholder="Nhập tuổi" value="${productInfo.age}">
+                                </div>
+                                <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                </div>
+                            </form>
+                            `;
+                    $("#formEdit").html(formEdit);
+                  } else {
+                    alert(rs.msg);
+                  }
+                },
+              });
+            }
+          </script>
+        <style>
+            :root{
+                --body-color:#E4E9F7;
+                --sidebase-color:#fff;
+                --primary-color:#695cfe;
+                --primary-color-light:#f6f5ff;
+                --toggle-color:#ddd;
+                --text-color:#707070;
+            }
+            *{
+                margin: 0;
+                padding:0;
+                box-sizing: border-box;
+                font-family:'Poppins', sans-serif;
+            }
+            body{
+                height: 100%;
+                background-color:var(--body-color);
+                transition: 0.4s;
+            }
+            body.dark{
+                --body-color:#18191a;
+                --sidebase-color:#242526;
+                --primary-color:#3a3b3c;
+                --primary-color-light:#3a3b3c;
+                --toggle-color:#fff;
+                --text-color:#ccc;
+            }
+            .sidebase{
+                position: fixed;
+                top:0;
+                left: 0;
+                height: 100%;
+                background-color:var(--sidebase-color);
+                padding: 10px 14px;
+                width: 250px;
+                transition: all 0.4s;
+                z-index: 100;
+            }
+            .sidebase.close{
+                width: 88px;
+            }
+            .sidebase li{
+                height: 50px;
+                margin-top: 10px;
+                list-style: none;
+                display: flex;
+                align-items: center;
+                /* background-color: red; */
+            }
+            .sidebase li .icon{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                justify-items: center;
+                font-size: 20px;
+                color: var(--primary-color-light);
+                min-width: 60px;
+                
+            }
+            .sidebase li .icon,
+            .sidebase li .text{
+                color: var(--text-color);
+                transition: 0.4s;
+            }
+            .sidebase li a{
+                text-decoration: none;
+                height: 100%;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                border-radius: 6px;
+                transition: 0.4s;
+            }
+            .sidebase li a:hover{
+                background-color: var(--primary-color);
+            }
+            .sidebase li a:hover .icon,
+            .sidebase li a:hover .text{
+                color: var(--primary-color-light);
+            }
+            body.dark .sidebase li a:hover .icon,
+            body.dark .sidebase li a:hover .text{
+                color: var(--text-color);
+            }
+            .sidebase .search-box{
+                background-color: var(--primary-color-light);
+                border-radius: 6px;
+
+            }
+            .search-box input{
+                width: 100%;
+                height: 100%;
+                background-color: var(--primary-color-light);
+                outline: none;
+                border: none;
+                border-radius: 6px;
+                transition: 0.4s;
+                font-size: 16px;
+                font-weight: 500;
+
+            }
+            
+            .sidebase header{
+                position: relative;
+            }
+            .sidebase .image-text img{
+                width: 40px;
+                border-radius: 6px;
+            }
+            .sidebase header .image-text{
+                display: flex;
+                align-items: center;
+            }
+            .sidebase .text{
+                font-size: 16px;
+                font-weight: 500;
+                color: var(--text-color);
+                transition: all 0.4s;
+                white-space: nowrap;
+                opacity: 1;
+            }
+            .sidebase.close .text{
+                opacity: 0;
+            }
+            .sidebase .image{
+                min-width: 60px;
+                display: flex;
+                
+            }
+            .sidebase .menu{
+                margin-top: 35px;
+            }
+            .sidebase header .toggle{
+                position: absolute;
+                top:50%;
+                right: -25px;
+                transform: translateY(-50%);
+                width: 25px;
+                height: 25px;
+                background-color: var(--primary-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                font-size: 12px;
+                font-weight: 600;
+                color: var(--sidebase-color);
+            }
+
+            body.dark .sidebase header .toggle{
+                color: var(--text-color);
+            }
+            .sidebase.close header .toggle
+            {
+                transform: translateY(-50%) rotate(180deg);
+            }
+            .sidebase .col{
+                height: calc(100%-50px);
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+            header .image-text .header-text{
+                display: flex;
+                flex-direction:column;
+            }
+            .header-text .name{
+                font-weight: 600;
+            }
+            .header-text .profestion{
+                margin-top: -2px;
+            }
+
+            .bottom-contents{
+                margin-top: 100%;
+            }
+            .col .mode{
+                background-color: var(--primary-color-light);
+                position: relative;
+                border-radius: 6px;
+            }
+            .col .mode .moon-sun{
+                height: 50px;
+                width: 60px;
+                display: flex;
+                align-items: center;
+            }
+            .col .mode i{
+                position: absolute;
+                transition: 0.4s;
+            }
+            .col .mode i.sun{
+                opacity: 0;
+            }
+            body.dark .col .mode i.sun{
+                opacity: 1;
+            }
+            body.dark .col .mode i.moon{
+                opacity: 0;
+            }
+            .col .mode .toggle-switch{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+                min-width: 60px;
+                cursor: pointer;
+                position: absolute;
+                right:0px;
+                background-color: var(--primary-color-light);
+                border-radius: 6px;
+                transition: 0.4s;
+            }
+            .toggle-switch .switch{
+                position: relative;
+                height: 22px;
+                width: 44px;
+                border-radius: 25px;
+                background-color: var(--toggle-color);
+
+            }
+            .switch::before{
+                content: '';
+                position: absolute;
+                border-radius: 50%;
+                transform: translateY(-50%);
+                top:50%;
+                left: 5px;
+                height: 15px;
+                width: 15px;
+                background-color: var(--sidebase-color);
+                cursor: pointer;
+            }
+            body.dark .switch::before{
+                left: 24px;
+            }
+            .home{
+                position: relative;
+                left: 250px;
+                height: 100vh;
+                width: calc(100%-250px);
+                background-color: var(--body-color);
+                transition: 0.4s;
+            }
+            .home .text{
+                font-size: 30px;
+                font-weight: 500;
+                color: var(--text-color);
+                padding: 8px 40px;
+            }
+            .sidebase.close ~ .home{
+                left: 88px;
+                width: calc(100%-88px);
+            }
+        </style>
+</div>
+    <script>
+        const body = document.querySelector("body");
+              sidebar =body.querySelector(".sidebase");
+              toggle=body.querySelector(".toggle");
+              search=body.querySelector(".search-box");
+              modeSwitch=body.querySelector(".mode");
+              modeText=body.querySelector(".mode-text");
+
+
+              toggle.addEventListener("click", () =>{
+                sidebar.classList.toggle("close");
+              });
+              modeSwitch.addEventListener("click", ()=>{
+                body.classList.toggle("dark");
+              });
+              if(body.classList.contains("dark")){
+                modeText.innerText="Light Mode"
+              }
+              else{
+                modeText.innerText="Dark Mode"
+              }
+    </script>
+<
+</body>
+</html>
